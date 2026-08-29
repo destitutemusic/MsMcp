@@ -99,6 +99,20 @@ export function createMsMcpServer(gateway: MsMcpGateway): McpServer {
 		gateway.unsubscribe(input.path);
 		return { path: input.path, unsubscribed: true };
 	}));
+	server.registerTool('mixer.scene.list', {
+		description: 'List all Mixing Station scenes with their index and name.',
+		inputSchema: z.object({}).strict(),
+	}, async () => safe(async () => gateway.listScenes()));
+
+	server.registerTool('mixer.scene.get_current', {
+		description: 'Read the currently active Mixing Station scene index.',
+		inputSchema: z.object({}).strict(),
+	}, async () => safe(async () => gateway.getCurrentScene()));
+
+	server.registerTool('mixer.scene.recall', {
+		description: 'Recall a Mixing Station scene by index; the mixer applies the change asynchronously.',
+		inputSchema: z.object({ index: z.number().int().min(0) }).strict(),
+	}, async (input) => safe(async () => gateway.recallScene(input.index)));
 
 	for (const parameter of gateway.getParameters()) {
 		if (parameter.canGet) {

@@ -12,6 +12,15 @@ export interface ParameterWrite {
 	sent: boolean;
 }
 
+export interface SceneInfo {
+	index: number;
+	name: string;
+}
+
+export interface SceneRecall {
+	index: number;
+	recalled: true;
+}
 export interface BatchCall {
 	path: string;
 	value: unknown;
@@ -74,6 +83,27 @@ export class MsMcpGateway {
 			}
 		}
 		return results;
+	}
+	/** Lists Mixing Station scenes; the scene index is the position in the returned array. */
+	async listScenes(): Promise<SceneInfo[]> {
+		const body = await this.client.get('scene.list');
+		const names = Array.isArray(body) ? body : [];
+		return names.map((name, index) => ({ index, name: String(name) }));
+	}
+
+	/** Reads the currently active scene index. */
+	async getCurrentScene(): Promise<{ index: number }> {
+		const index = await this.client.get('scene.current');
+		if (typeof index !== 'number' || !Number.isInteger(index)) {
+			throw new Error(`Mixing Station scene.current returned an invalid index: ${String(index)}`);
+		}
+		return { index };
+	}
+
+	/** Recalls a scene by index; the mixer applies the change asynchronously. */
+	async recallScene(index: number): Promise<SceneRecall> {
+		await this.client.set('scene.recall', { index });
+		return { index, recalled: true };
 	}
 
 	async close(): Promise<void> {

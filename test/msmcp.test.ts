@@ -51,6 +51,15 @@ function startMock(initial: Record<string, unknown>): Promise<MockState> {
 					reply(null);
 					return;
 				}
+				if (dataPath === 'scene.recall') {
+					let index: unknown = null;
+					if (request.body !== null && typeof request.body === 'object' && 'index' in request.body) {
+						index = request.body.index;
+					}
+					values.set('scene.current', index);
+					reply(request.body);
+					return;
+				}
 				if (request.method === 'GET') {
 					if (values.has(dataPath)) reply(values.get(dataPath), null);
 					else reply(null, 'not found');
@@ -92,6 +101,8 @@ const MOCK_MIXER = {
 	'ch.1.mix.lvl': 0.5,
 	'bus.0.mix.lvl': -10,
 	'dca.0.mix.lvl': -3,
+	'scene.list': ['Scene 1', 'Scene 2', 'Sound Check'],
+	'scene.current': 0,
 };
 
 test('discovery finds existing parameters with correct metadata and skips unknown paths', async (t) => {
@@ -155,6 +166,23 @@ test('gateway get/set/batch round-trip values through the mock', async (t) => {
 	});
 });
 
+test('gateway scene management lists, reads, and recalls scenes', async (t) => {
+	await withClient(t, MOCK_MIXER, async (state, client) => {
+		const parameters = await new ParameterDiscovery(client).discover();
+		const gateway = new MsMcpGateway(client, parameters);
+
+		assert.deepEqual(await gateway.listScenes(), [
+			{ index: 0, name: 'Scene 1' },
+			{ index: 1, name: 'Scene 2' },
+			{ index: 2, name: 'Sound Check' },
+		]);
+		assert.deepEqual(await gateway.getCurrentScene(), { index: 0 });
+		assert.deepEqual(await gateway.recallScene(2), { index: 2, recalled: true });
+		assert.equal(state.values.get('scene.current'), 2);
+		assert.deepEqual(await gateway.getCurrentScene(), { index: 2 });
+	});
+});
+
 test('MCP server exposes fixed and generated tools, resources, and validation', async (t) => {
 	await withClient(t, MOCK_MIXER, async (state, client) => {
 		const parameters = await new ParameterDiscovery(client).discover();
@@ -173,7 +201,7 @@ test('MCP server exposes fixed and generated tools, resources, and validation', 
 
 		const tools = await mcpClient.listTools();
 		const names = tools.tools.map((tool) => tool.name);
-		for (const fixed of ['mixer.list_parameters', 'mixer.get', 'mixer.set', 'mixer.batch', 'mixer.subscribe', 'mixer.unsubscribe']) {
+		for (const fixed of ['mixer.list_parameters', 'mixer.get', 'mixer.set', 'mixer.batch', 'mixer.subscribe', 'mixer.unsubscribe', 'mixer.scene.list', 'mixer.scene.get_current', 'mixer.scene.recall']) {
 			assert.ok(names.includes(fixed), `missing fixed tool ${fixed}`);
 		}
 		assert.ok(names.includes('mixer.ch.0.mix.lvl.get'));
@@ -225,6 +253,19 @@ test('MCP server exposes fixed and generated tools, resources, and validation', 
 		assert.equal(subscribeCall.isError, undefined);
 		const unsubscribeCall = await mcpClient.callTool({ name: 'mixer.unsubscribe', arguments: { path: 'ch.*.mix.lvl' } });
 		assert.equal(unsubscribeCall.isError, undefined);
+		const sceneListCall = await mcpClient.callTool({ name: 'mixer.scene.list', arguments: {} });
+		assert.equal(sceneListCall.isError, undefined);
+		assert.ok(JSON.stringify(sceneListCall.content).includes('Sound Check'));
+
+		const sceneCurrentCall = await mcpClient.callTool({ name: 'mixer.scene.get_current', arguments: {} });
+		assert.equal(sceneCurrentCall.isError, undefined);
+
+		const sceneRecallCall = await mcpClient.callTool({ name: 'mixer.scene.recall', arguments: { index: 2 } });
+		assert.equal(sceneRecallCall.isError, undefined);
+		assert.equal(state.values.get('scene.current'), 2);
+
+		const badRecallCall = await mcpClient.callTool({ name: 'mixer.scene.recall', arguments: { index: -1 } });
+		assert.equal(badRecallCall.isError, true);
 
 		const parametersResource = await mcpClient.readResource({ uri: 'mixer://parameters' });
 		assert.equal(parametersResource.contents.length, 1);
