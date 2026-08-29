@@ -90,4 +90,4 @@ MsMcp works with any mixer supported by Mixing Station Desktop (60+ models inclu
 
 ## License
 
-Apache-2.0. Mixing Station is a separate product by Philipp BodEin.
+Apache-2.0. Mixing Station is a separate product by David Giga (@davidgiga1993).
