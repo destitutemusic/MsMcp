@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { DEFAULT_HOST, DEFAULT_PORT, MixingStationClient } from './mixingstation.js';
 import { ParameterDiscovery } from './discovery.js';
 import { MsMcpGateway } from './msmcp-gateway.js';
