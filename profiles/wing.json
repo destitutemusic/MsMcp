@@ -1,0 +1,3003 @@
+{
+  "schemaVersion": 1,
+  "id": "wing",
+  "name": "Behringer WING (verified against firmware 3.1)",
+  "transport": {
+    "host": "127.0.0.1",
+    "port": 2223,
+    "timeoutMs": 400,
+    "rateLimitPerSecond": 100
+  },
+  "snapshotCommands": [
+    {
+      "command": "main.fader.set",
+      "arguments": {
+        "main": 1
+      }
+    },
+    {
+      "command": "main.mute.set",
+      "arguments": {
+        "main": 1
+      }
+    },
+    {
+      "command": "main.fader.set",
+      "arguments": {
+        "main": 2
+      }
+    },
+    {
+      "command": "main.mute.set",
+      "arguments": {
+        "main": 2
+      }
+    },
+    {
+      "command": "main.fader.set",
+      "arguments": {
+        "main": 3
+      }
+    },
+    {
+      "command": "main.mute.set",
+      "arguments": {
+        "main": 3
+      }
+    },
+    {
+      "command": "main.fader.set",
+      "arguments": {
+        "main": 4
+      }
+    },
+    {
+      "command": "main.mute.set",
+      "arguments": {
+        "main": 4
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 1
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 1
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 2
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 2
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 3
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 3
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 4
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 4
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 5
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 5
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 6
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 6
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 7
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 7
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 8
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 8
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 9
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 9
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 10
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 10
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 11
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 11
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 12
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 12
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 13
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 13
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 14
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 14
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 15
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 15
+      }
+    },
+    {
+      "command": "bus.fader.set",
+      "arguments": {
+        "bus": 16
+      }
+    },
+    {
+      "command": "bus.mute.set",
+      "arguments": {
+        "bus": 16
+      }
+    },
+    {
+      "command": "matrix.fader.set",
+      "arguments": {
+        "matrix": 1
+      }
+    },
+    {
+      "command": "matrix.mute.set",
+      "arguments": {
+        "matrix": 1
+      }
+    },
+    {
+      "command": "matrix.fader.set",
+      "arguments": {
+        "matrix": 2
+      }
+    },
+    {
+      "command": "matrix.mute.set",
+      "arguments": {
+        "matrix": 2
+      }
+    },
+    {
+      "command": "matrix.fader.set",
+      "arguments": {
+        "matrix": 3
+      }
+    },
+    {
+      "command": "matrix.mute.set",
+      "arguments": {
+        "matrix": 3
+      }
+    },
+    {
+      "command": "matrix.fader.set",
+      "arguments": {
+        "matrix": 4
+      }
+    },
+    {
+      "command": "matrix.mute.set",
+      "arguments": {
+        "matrix": 4
+      }
+    },
+    {
+      "command": "matrix.fader.set",
+      "arguments": {
+        "matrix": 5
+      }
+    },
+    {
+      "command": "matrix.mute.set",
+      "arguments": {
+        "matrix": 5
+      }
+    },
+    {
+      "command": "matrix.fader.set",
+      "arguments": {
+        "matrix": 6
+      }
+    },
+    {
+      "command": "matrix.mute.set",
+      "arguments": {
+        "matrix": 6
+      }
+    },
+    {
+      "command": "matrix.fader.set",
+      "arguments": {
+        "matrix": 7
+      }
+    },
+    {
+      "command": "matrix.mute.set",
+      "arguments": {
+        "matrix": 7
+      }
+    },
+    {
+      "command": "matrix.fader.set",
+      "arguments": {
+        "matrix": 8
+      }
+    },
+    {
+      "command": "matrix.mute.set",
+      "arguments": {
+        "matrix": 8
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 1
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 1
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 2
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 2
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 3
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 3
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 4
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 4
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 5
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 5
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 6
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 6
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 7
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 7
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 8
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 8
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 9
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 9
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 10
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 10
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 11
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 11
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 12
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 12
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 13
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 13
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 14
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 14
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 15
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 15
+      }
+    },
+    {
+      "command": "dca.fader.set",
+      "arguments": {
+        "dca": 16
+      }
+    },
+    {
+      "command": "dca.mute.set",
+      "arguments": {
+        "dca": 16
+      }
+    }
+  ],
+  "commands": [
+    {
+      "id": "channel.fader.get",
+      "description": "Read a channel fader in dB (-144 = -inf, +10 max)",
+      "group": "channel",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/fdr"
+      }
+    },
+    {
+      "id": "channel.fader.set",
+      "description": "Set a channel fader in dB (-144 = -inf, +10 max)",
+      "group": "channel",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/fdr",
+        "get": "/ch/{channel}/fdr"
+      }
+    },
+    {
+      "id": "channel.mute.get",
+      "description": "Read a channel mute (WING polarity: true mutes)",
+      "group": "channel",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = muted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/mute"
+      }
+    },
+    {
+      "id": "channel.mute.set",
+      "description": "Set a channel mute (WING polarity: true mutes)",
+      "group": "channel",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = muted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/mute",
+        "get": "/ch/{channel}/mute"
+      }
+    },
+    {
+      "id": "channel.pan.get",
+      "description": "Read a channel pan",
+      "group": "channel",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -100,
+        "max": 100,
+        "unit": "pan (-100 L .. +100 R)",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/pan"
+      }
+    },
+    {
+      "id": "channel.pan.set",
+      "description": "Set a channel pan",
+      "group": "channel",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -100,
+        "max": 100,
+        "unit": "pan (-100 L .. +100 R)",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/pan",
+        "get": "/ch/{channel}/pan"
+      }
+    },
+    {
+      "id": "channel.width.get",
+      "description": "Read a channel stereo width",
+      "group": "channel",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -150,
+        "max": 150,
+        "unit": "stereo width %",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/wid"
+      }
+    },
+    {
+      "id": "channel.width.set",
+      "description": "Set a channel stereo width",
+      "group": "channel",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -150,
+        "max": 150,
+        "unit": "stereo width %",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/wid",
+        "get": "/ch/{channel}/wid"
+      }
+    },
+    {
+      "id": "channel.name.get",
+      "description": "Read a channel name",
+      "group": "channel",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "get": "/ch/{channel}/name"
+      }
+    },
+    {
+      "id": "channel.name.set",
+      "description": "Set a channel name",
+      "group": "channel",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "set": "/ch/{channel}/name",
+        "get": "/ch/{channel}/name"
+      }
+    },
+    {
+      "id": "channel.solo.get",
+      "description": "Read a channel solo",
+      "group": "channel",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = soloed",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/$solo"
+      }
+    },
+    {
+      "id": "channel.solo.set",
+      "description": "Set a channel solo",
+      "group": "channel",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = soloed",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/$solo",
+        "get": "/ch/{channel}/$solo"
+      }
+    },
+    {
+      "id": "channel.polarity.get",
+      "description": "Read a channel polarity invert",
+      "group": "channel",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = inverted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/in/set/inv"
+      }
+    },
+    {
+      "id": "channel.polarity.set",
+      "description": "Set a channel polarity invert",
+      "group": "channel",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = inverted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/in/set/inv",
+        "get": "/ch/{channel}/in/set/inv"
+      }
+    },
+    {
+      "id": "channel.eq.on.get",
+      "description": "Read the channel EQ in/out",
+      "group": "channel.eq",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = EQ engaged",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/eq/on"
+      }
+    },
+    {
+      "id": "channel.eq.on.set",
+      "description": "Set the channel EQ in/out",
+      "group": "channel.eq",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = EQ engaged",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/eq/on",
+        "get": "/ch/{channel}/eq/on"
+      }
+    },
+    {
+      "id": "channel.eq.band.gain.get",
+      "description": "Read a channel EQ band gain",
+      "group": "channel.eq",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        },
+        {
+          "name": "band",
+          "type": "enum",
+          "values": [
+            "l",
+            "1",
+            "2",
+            "3",
+            "4",
+            "h"
+          ]
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -15,
+        "max": 15,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/eq/{band}g"
+      }
+    },
+    {
+      "id": "channel.eq.band.gain.set",
+      "description": "Set a channel EQ band gain",
+      "group": "channel.eq",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        },
+        {
+          "name": "band",
+          "type": "enum",
+          "values": [
+            "l",
+            "1",
+            "2",
+            "3",
+            "4",
+            "h"
+          ]
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -15,
+        "max": 15,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/eq/{band}g",
+        "get": "/ch/{channel}/eq/{band}g"
+      }
+    },
+    {
+      "id": "channel.eq.band.frequency.get",
+      "description": "Read a channel EQ band frequency",
+      "group": "channel.eq",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        },
+        {
+          "name": "band",
+          "type": "enum",
+          "values": [
+            "l",
+            "1",
+            "2",
+            "3",
+            "4",
+            "h"
+          ]
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": 20,
+        "max": 20000,
+        "unit": "Hz",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/eq/{band}f"
+      }
+    },
+    {
+      "id": "channel.eq.band.frequency.set",
+      "description": "Set a channel EQ band frequency",
+      "group": "channel.eq",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        },
+        {
+          "name": "band",
+          "type": "enum",
+          "values": [
+            "l",
+            "1",
+            "2",
+            "3",
+            "4",
+            "h"
+          ]
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": 20,
+        "max": 20000,
+        "unit": "Hz",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/eq/{band}f",
+        "get": "/ch/{channel}/eq/{band}f"
+      }
+    },
+    {
+      "id": "channel.eq.band.q.get",
+      "description": "Read a channel EQ band Q",
+      "group": "channel.eq",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        },
+        {
+          "name": "band",
+          "type": "enum",
+          "values": [
+            "l",
+            "1",
+            "2",
+            "3",
+            "4",
+            "h"
+          ]
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": 0.442,
+        "max": 10,
+        "unit": "Q",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/eq/{band}q"
+      }
+    },
+    {
+      "id": "channel.eq.band.q.set",
+      "description": "Set a channel EQ band Q",
+      "group": "channel.eq",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        },
+        {
+          "name": "band",
+          "type": "enum",
+          "values": [
+            "l",
+            "1",
+            "2",
+            "3",
+            "4",
+            "h"
+          ]
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": 0.442,
+        "max": 10,
+        "unit": "Q",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/eq/{band}q",
+        "get": "/ch/{channel}/eq/{band}q"
+      }
+    },
+    {
+      "id": "channel.gate.on.get",
+      "description": "Read the channel gate in/out",
+      "group": "channel.dyn",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = gate engaged",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/gate/on"
+      }
+    },
+    {
+      "id": "channel.gate.on.set",
+      "description": "Set the channel gate in/out",
+      "group": "channel.dyn",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = gate engaged",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/gate/on",
+        "get": "/ch/{channel}/gate/on"
+      }
+    },
+    {
+      "id": "channel.dyn.on.get",
+      "description": "Read the channel compressor in/out",
+      "group": "channel.dyn",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = compressor engaged",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/dyn/on"
+      }
+    },
+    {
+      "id": "channel.dyn.on.set",
+      "description": "Set the channel compressor in/out",
+      "group": "channel.dyn",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = compressor engaged",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/dyn/on",
+        "get": "/ch/{channel}/dyn/on"
+      }
+    },
+    {
+      "id": "channel.lowcut.on.get",
+      "description": "Read the channel low cut in/out",
+      "group": "channel.dyn",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = low cut engaged",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/flt/lc"
+      }
+    },
+    {
+      "id": "channel.lowcut.on.set",
+      "description": "Set the channel low cut in/out",
+      "group": "channel.dyn",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = low cut engaged",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/flt/lc",
+        "get": "/ch/{channel}/flt/lc"
+      }
+    },
+    {
+      "id": "channel.lowcut.frequency.get",
+      "description": "Read the channel low cut frequency",
+      "group": "channel.dyn",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": 20,
+        "max": 400,
+        "unit": "Hz",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/flt/lcf"
+      }
+    },
+    {
+      "id": "channel.lowcut.frequency.set",
+      "description": "Set the channel low cut frequency",
+      "group": "channel.dyn",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": 20,
+        "max": 400,
+        "unit": "Hz",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/flt/lcf",
+        "get": "/ch/{channel}/flt/lcf"
+      }
+    },
+    {
+      "id": "channel.send.level.get",
+      "description": "Read a channel send level to a bus (1-16) or matrix (MX1-MX8)",
+      "group": "channel.send",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        },
+        {
+          "name": "send",
+          "type": "enum",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "MX1",
+            "MX2",
+            "MX3",
+            "MX4",
+            "MX5",
+            "MX6",
+            "MX7",
+            "MX8"
+          ]
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/send/{send}/lvl"
+      }
+    },
+    {
+      "id": "channel.send.level.set",
+      "description": "Set a channel send level to a bus (1-16) or matrix (MX1-MX8)",
+      "group": "channel.send",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        },
+        {
+          "name": "send",
+          "type": "enum",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "MX1",
+            "MX2",
+            "MX3",
+            "MX4",
+            "MX5",
+            "MX6",
+            "MX7",
+            "MX8"
+          ]
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/send/{send}/lvl",
+        "get": "/ch/{channel}/send/{send}/lvl"
+      }
+    },
+    {
+      "id": "channel.send.on.get",
+      "description": "Read a channel send on/off",
+      "group": "channel.send",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        },
+        {
+          "name": "send",
+          "type": "enum",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "MX1",
+            "MX2",
+            "MX3",
+            "MX4",
+            "MX5",
+            "MX6",
+            "MX7",
+            "MX8"
+          ]
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = send enabled",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/send/{send}/on"
+      }
+    },
+    {
+      "id": "channel.send.on.set",
+      "description": "Set a channel send on/off",
+      "group": "channel.send",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        },
+        {
+          "name": "send",
+          "type": "enum",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "MX1",
+            "MX2",
+            "MX3",
+            "MX4",
+            "MX5",
+            "MX6",
+            "MX7",
+            "MX8"
+          ]
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = send enabled",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/send/{send}/on",
+        "get": "/ch/{channel}/send/{send}/on"
+      }
+    },
+    {
+      "id": "channel.send.pan.get",
+      "description": "Read a channel send pan",
+      "group": "channel.send",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        },
+        {
+          "name": "send",
+          "type": "enum",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "MX1",
+            "MX2",
+            "MX3",
+            "MX4",
+            "MX5",
+            "MX6",
+            "MX7",
+            "MX8"
+          ]
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -100,
+        "max": 100,
+        "unit": "pan (-100 L .. +100 R)",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/send/{send}/pan"
+      }
+    },
+    {
+      "id": "channel.send.pan.set",
+      "description": "Set a channel send pan",
+      "group": "channel.send",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        },
+        {
+          "name": "send",
+          "type": "enum",
+          "values": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "MX1",
+            "MX2",
+            "MX3",
+            "MX4",
+            "MX5",
+            "MX6",
+            "MX7",
+            "MX8"
+          ]
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -100,
+        "max": 100,
+        "unit": "pan (-100 L .. +100 R)",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/send/{send}/pan",
+        "get": "/ch/{channel}/send/{send}/pan"
+      }
+    },
+    {
+      "id": "channel.main.on.get",
+      "description": "Read a channel assignment to a main bus",
+      "group": "channel.send",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        },
+        {
+          "name": "main",
+          "type": "integer",
+          "min": 1,
+          "max": 4
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = assigned",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/ch/{channel}/main/{main}/on"
+      }
+    },
+    {
+      "id": "channel.main.on.set",
+      "description": "Set a channel assignment to a main bus",
+      "group": "channel.send",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "channel",
+          "type": "integer",
+          "min": 1,
+          "max": 40
+        },
+        {
+          "name": "main",
+          "type": "integer",
+          "min": 1,
+          "max": 4
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = assigned",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/ch/{channel}/main/{main}/on",
+        "get": "/ch/{channel}/main/{main}/on"
+      }
+    },
+    {
+      "id": "bus.fader.get",
+      "description": "Read a bus fader in dB",
+      "group": "bus",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "bus",
+          "type": "integer",
+          "min": 1,
+          "max": 16
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/bus/{bus}/fdr"
+      }
+    },
+    {
+      "id": "bus.fader.set",
+      "description": "Set a bus fader in dB",
+      "group": "bus",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "bus",
+          "type": "integer",
+          "min": 1,
+          "max": 16
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/bus/{bus}/fdr",
+        "get": "/bus/{bus}/fdr"
+      }
+    },
+    {
+      "id": "bus.mute.get",
+      "description": "Read a bus mute (true mutes)",
+      "group": "bus",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "bus",
+          "type": "integer",
+          "min": 1,
+          "max": 16
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = muted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/bus/{bus}/mute"
+      }
+    },
+    {
+      "id": "bus.mute.set",
+      "description": "Set a bus mute (true mutes)",
+      "group": "bus",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "bus",
+          "type": "integer",
+          "min": 1,
+          "max": 16
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = muted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/bus/{bus}/mute",
+        "get": "/bus/{bus}/mute"
+      }
+    },
+    {
+      "id": "bus.pan.get",
+      "description": "Read a bus pan",
+      "group": "bus",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "bus",
+          "type": "integer",
+          "min": 1,
+          "max": 16
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -100,
+        "max": 100,
+        "unit": "pan (-100 L .. +100 R)",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/bus/{bus}/pan"
+      }
+    },
+    {
+      "id": "bus.pan.set",
+      "description": "Set a bus pan",
+      "group": "bus",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "bus",
+          "type": "integer",
+          "min": 1,
+          "max": 16
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -100,
+        "max": 100,
+        "unit": "pan (-100 L .. +100 R)",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/bus/{bus}/pan",
+        "get": "/bus/{bus}/pan"
+      }
+    },
+    {
+      "id": "bus.name.get",
+      "description": "Read a bus name",
+      "group": "bus",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "bus",
+          "type": "integer",
+          "min": 1,
+          "max": 16
+        }
+      ],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "get": "/bus/{bus}/name"
+      }
+    },
+    {
+      "id": "bus.name.set",
+      "description": "Set a bus name",
+      "group": "bus",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "bus",
+          "type": "integer",
+          "min": 1,
+          "max": 16
+        }
+      ],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "set": "/bus/{bus}/name",
+        "get": "/bus/{bus}/name"
+      }
+    },
+    {
+      "id": "matrix.fader.get",
+      "description": "Read a matrix fader in dB",
+      "group": "matrix",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "matrix",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/mtx/{matrix}/fdr"
+      }
+    },
+    {
+      "id": "matrix.fader.set",
+      "description": "Set a matrix fader in dB",
+      "group": "matrix",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "matrix",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/mtx/{matrix}/fdr",
+        "get": "/mtx/{matrix}/fdr"
+      }
+    },
+    {
+      "id": "matrix.mute.get",
+      "description": "Read a matrix mute (true mutes)",
+      "group": "matrix",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "matrix",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = muted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/mtx/{matrix}/mute"
+      }
+    },
+    {
+      "id": "matrix.mute.set",
+      "description": "Set a matrix mute (true mutes)",
+      "group": "matrix",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "matrix",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = muted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/mtx/{matrix}/mute",
+        "get": "/mtx/{matrix}/mute"
+      }
+    },
+    {
+      "id": "matrix.pan.get",
+      "description": "Read a matrix pan",
+      "group": "matrix",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "matrix",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -100,
+        "max": 100,
+        "unit": "pan (-100 L .. +100 R)",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/mtx/{matrix}/pan"
+      }
+    },
+    {
+      "id": "matrix.pan.set",
+      "description": "Set a matrix pan",
+      "group": "matrix",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "matrix",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -100,
+        "max": 100,
+        "unit": "pan (-100 L .. +100 R)",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/mtx/{matrix}/pan",
+        "get": "/mtx/{matrix}/pan"
+      }
+    },
+    {
+      "id": "matrix.name.get",
+      "description": "Read a matrix name",
+      "group": "matrix",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "matrix",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "get": "/mtx/{matrix}/name"
+      }
+    },
+    {
+      "id": "matrix.name.set",
+      "description": "Set a matrix name",
+      "group": "matrix",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "matrix",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "set": "/mtx/{matrix}/name",
+        "get": "/mtx/{matrix}/name"
+      }
+    },
+    {
+      "id": "main.fader.get",
+      "description": "Read a main bus fader in dB",
+      "group": "main",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "main",
+          "type": "integer",
+          "min": 1,
+          "max": 4
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/main/{main}/fdr"
+      }
+    },
+    {
+      "id": "main.fader.set",
+      "description": "Set a main bus fader in dB",
+      "group": "main",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "main",
+          "type": "integer",
+          "min": 1,
+          "max": 4
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/main/{main}/fdr",
+        "get": "/main/{main}/fdr"
+      }
+    },
+    {
+      "id": "main.mute.get",
+      "description": "Read a main bus mute (true mutes)",
+      "group": "main",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "main",
+          "type": "integer",
+          "min": 1,
+          "max": 4
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = muted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/main/{main}/mute"
+      }
+    },
+    {
+      "id": "main.mute.set",
+      "description": "Set a main bus mute (true mutes)",
+      "group": "main",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "main",
+          "type": "integer",
+          "min": 1,
+          "max": 4
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = muted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/main/{main}/mute",
+        "get": "/main/{main}/mute"
+      }
+    },
+    {
+      "id": "main.pan.get",
+      "description": "Read a main bus pan",
+      "group": "main",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "main",
+          "type": "integer",
+          "min": 1,
+          "max": 4
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -100,
+        "max": 100,
+        "unit": "pan (-100 L .. +100 R)",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/main/{main}/pan"
+      }
+    },
+    {
+      "id": "main.pan.set",
+      "description": "Set a main bus pan",
+      "group": "main",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "main",
+          "type": "integer",
+          "min": 1,
+          "max": 4
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -100,
+        "max": 100,
+        "unit": "pan (-100 L .. +100 R)",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/main/{main}/pan",
+        "get": "/main/{main}/pan"
+      }
+    },
+    {
+      "id": "main.name.get",
+      "description": "Read a main bus name",
+      "group": "main",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "main",
+          "type": "integer",
+          "min": 1,
+          "max": 4
+        }
+      ],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "get": "/main/{main}/name"
+      }
+    },
+    {
+      "id": "main.name.set",
+      "description": "Set a main bus name",
+      "group": "main",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "main",
+          "type": "integer",
+          "min": 1,
+          "max": 4
+        }
+      ],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "set": "/main/{main}/name",
+        "get": "/main/{main}/name"
+      }
+    },
+    {
+      "id": "aux.fader.get",
+      "description": "Read an aux input fader in dB",
+      "group": "aux",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "aux",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/aux/{aux}/fdr"
+      }
+    },
+    {
+      "id": "aux.fader.set",
+      "description": "Set an aux input fader in dB",
+      "group": "aux",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "aux",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/aux/{aux}/fdr",
+        "get": "/aux/{aux}/fdr"
+      }
+    },
+    {
+      "id": "aux.mute.get",
+      "description": "Read an aux input mute (true mutes)",
+      "group": "aux",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "aux",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = muted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/aux/{aux}/mute"
+      }
+    },
+    {
+      "id": "aux.mute.set",
+      "description": "Set an aux input mute (true mutes)",
+      "group": "aux",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "aux",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = muted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/aux/{aux}/mute",
+        "get": "/aux/{aux}/mute"
+      }
+    },
+    {
+      "id": "aux.pan.get",
+      "description": "Read an aux input pan",
+      "group": "aux",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "aux",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -100,
+        "max": 100,
+        "unit": "pan (-100 L .. +100 R)",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/aux/{aux}/pan"
+      }
+    },
+    {
+      "id": "aux.pan.set",
+      "description": "Set an aux input pan",
+      "group": "aux",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "aux",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -100,
+        "max": 100,
+        "unit": "pan (-100 L .. +100 R)",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/aux/{aux}/pan",
+        "get": "/aux/{aux}/pan"
+      }
+    },
+    {
+      "id": "aux.name.get",
+      "description": "Read an aux input name",
+      "group": "aux",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "aux",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "get": "/aux/{aux}/name"
+      }
+    },
+    {
+      "id": "aux.name.set",
+      "description": "Set an aux input name",
+      "group": "aux",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "aux",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "set": "/aux/{aux}/name",
+        "get": "/aux/{aux}/name"
+      }
+    },
+    {
+      "id": "dca.fader.get",
+      "description": "Read a DCA fader in dB",
+      "group": "dca",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "dca",
+          "type": "integer",
+          "min": 1,
+          "max": 16
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/dca/{dca}/fdr"
+      }
+    },
+    {
+      "id": "dca.fader.set",
+      "description": "Set a DCA fader in dB",
+      "group": "dca",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "dca",
+          "type": "integer",
+          "min": 1,
+          "max": 16
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/dca/{dca}/fdr",
+        "get": "/dca/{dca}/fdr"
+      }
+    },
+    {
+      "id": "dca.mute.get",
+      "description": "Read a DCA mute (true mutes)",
+      "group": "dca",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "dca",
+          "type": "integer",
+          "min": 1,
+          "max": 16
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = muted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/dca/{dca}/mute"
+      }
+    },
+    {
+      "id": "dca.mute.set",
+      "description": "Set a DCA mute (true mutes)",
+      "group": "dca",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "dca",
+          "type": "integer",
+          "min": 1,
+          "max": 16
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = muted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/dca/{dca}/mute",
+        "get": "/dca/{dca}/mute"
+      }
+    },
+    {
+      "id": "dca.name.get",
+      "description": "Read a DCA name",
+      "group": "dca",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "dca",
+          "type": "integer",
+          "min": 1,
+          "max": 16
+        }
+      ],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "get": "/dca/{dca}/name"
+      }
+    },
+    {
+      "id": "dca.name.set",
+      "description": "Set a DCA name",
+      "group": "dca",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "dca",
+          "type": "integer",
+          "min": 1,
+          "max": 16
+        }
+      ],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "set": "/dca/{dca}/name",
+        "get": "/dca/{dca}/name"
+      }
+    },
+    {
+      "id": "mutegroup.mute.get",
+      "description": "Read a mute group",
+      "group": "dca",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "group",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = group muted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/mgrp/{group}/mute"
+      }
+    },
+    {
+      "id": "mutegroup.mute.set",
+      "description": "Set a mute group",
+      "group": "dca",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "group",
+          "type": "integer",
+          "min": 1,
+          "max": 8
+        }
+      ],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = group muted",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/mgrp/{group}/mute",
+        "get": "/mgrp/{group}/mute"
+      }
+    },
+    {
+      "id": "monitor.dim.get",
+      "description": "Read the monitor/solo dim",
+      "group": "monitor",
+      "kind": "get",
+      "arguments": [],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = dim engaged",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/cfg/solo/$dim"
+      }
+    },
+    {
+      "id": "monitor.dim.set",
+      "description": "Set the monitor/solo dim",
+      "group": "monitor",
+      "kind": "set",
+      "arguments": [],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = dim engaged",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/cfg/solo/$dim",
+        "get": "/cfg/solo/$dim"
+      }
+    },
+    {
+      "id": "monitor.dim.amount.get",
+      "description": "Read the monitor dim amount",
+      "group": "monitor",
+      "kind": "get",
+      "arguments": [
+        {
+          "name": "bus",
+          "type": "integer",
+          "min": 1,
+          "max": 2
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": 0,
+        "max": 40,
+        "unit": "dB of attenuation",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/cfg/mon/{bus}/dim"
+      }
+    },
+    {
+      "id": "monitor.dim.amount.set",
+      "description": "Set the monitor dim amount",
+      "group": "monitor",
+      "kind": "set",
+      "arguments": [
+        {
+          "name": "bus",
+          "type": "integer",
+          "min": 1,
+          "max": 2
+        }
+      ],
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": 0,
+        "max": 40,
+        "unit": "dB of attenuation",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/cfg/mon/{bus}/dim",
+        "get": "/cfg/mon/{bus}/dim"
+      }
+    },
+    {
+      "id": "monitor.level.get",
+      "description": "Read the Monitor 1 level in dB",
+      "group": "monitor",
+      "kind": "get",
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/cfg/mon/1/$lvl"
+      }
+    },
+    {
+      "id": "monitor.level.set",
+      "description": "Set the Monitor 1 level in dB",
+      "group": "monitor",
+      "kind": "set",
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/cfg/mon/1/$lvl",
+        "get": "/cfg/mon/1/$lvl"
+      }
+    },
+    {
+      "id": "monitor.alt.level.get",
+      "description": "Read the Monitor 2 level in dB",
+      "group": "monitor",
+      "kind": "get",
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/cfg/mon/2/lvl"
+      }
+    },
+    {
+      "id": "monitor.alt.level.set",
+      "description": "Set the Monitor 2 level in dB",
+      "group": "monitor",
+      "kind": "set",
+      "value": {
+        "type": "number",
+        "oscType": "float",
+        "min": -144,
+        "max": 10,
+        "unit": "dB",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/cfg/mon/2/lvl",
+        "get": "/cfg/mon/2/lvl"
+      }
+    },
+    {
+      "id": "monitor.mono.get",
+      "description": "Read the monitor mono fold",
+      "group": "monitor",
+      "kind": "get",
+      "arguments": [],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = mono",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/cfg/solo/$mono"
+      }
+    },
+    {
+      "id": "monitor.mono.set",
+      "description": "Set the monitor mono fold",
+      "group": "monitor",
+      "kind": "set",
+      "arguments": [],
+      "value": {
+        "type": "boolean",
+        "oscType": "int",
+        "unit": "true = mono",
+        "replyIndex": 2
+      },
+      "osc": {
+        "set": "/cfg/solo/$mono",
+        "get": "/cfg/solo/$mono"
+      }
+    },
+    {
+      "id": "scene.select",
+      "description": "Select the scene/show library index that scene.go will act on. Selecting is inert until scene.go runs.",
+      "group": "scenes",
+      "kind": "set",
+      "arguments": [],
+      "value": {
+        "type": "integer",
+        "oscType": "int",
+        "min": 0,
+        "max": 999,
+        "unit": "library index",
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/$ctl/lib/$actionidx",
+        "set": "/$ctl/lib/$actionidx"
+      }
+    },
+    {
+      "id": "scene.action.get",
+      "description": "Read the current scene library action state (IDLE while nothing is running).",
+      "group": "scenes",
+      "kind": "get",
+      "arguments": [],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "get": "/$ctl/lib/$action"
+      }
+    },
+    {
+      "id": "scene.go",
+      "description": "Run a scene library action on the selected index. DESTRUCTIVE: 'GO' recalls and overwrites live console state.",
+      "group": "scenes",
+      "kind": "set",
+      "arguments": [],
+      "value": {
+        "type": "enum",
+        "oscType": "string",
+        "values": [
+          "GO",
+          "SAVE",
+          "UPDATE"
+        ],
+        "replyIndex": 0
+      },
+      "osc": {
+        "set": "/$ctl/lib/$action"
+      }
+    },
+    {
+      "id": "scene.active.get",
+      "description": "Read the id of the currently active scene.",
+      "group": "scenes",
+      "kind": "get",
+      "arguments": [],
+      "value": {
+        "type": "integer",
+        "oscType": "int",
+        "min": 0,
+        "max": 999,
+        "replyIndex": 2
+      },
+      "osc": {
+        "get": "/$ctl/lib/$activeid"
+      }
+    },
+    {
+      "id": "console.name.get",
+      "description": "Read the console name",
+      "group": "system",
+      "kind": "get",
+      "arguments": [],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "get": "/$syscfg/consolename"
+      }
+    },
+    {
+      "id": "console.firmware.get",
+      "description": "Read the console firmware version",
+      "group": "system",
+      "kind": "get",
+      "arguments": [],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "get": "/$syscfg/$firmware"
+      }
+    },
+    {
+      "id": "console.model.get",
+      "description": "Read the console model",
+      "group": "system",
+      "kind": "get",
+      "arguments": [],
+      "value": {
+        "type": "string",
+        "oscType": "string",
+        "replyIndex": 0
+      },
+      "osc": {
+        "get": "/$syscfg/$cnsmdl"
+      }
+    }
+  ]
+}
