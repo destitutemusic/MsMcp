@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { createServer, type Server as HttpServer } from 'node:http';
+import { createServer, type IncomingMessage, type Server as HttpServer } from 'node:http';
 import test from 'node:test';
 import { WebSocketServer } from 'ws';
 
@@ -17,6 +17,22 @@ interface MockState {
 	values: Map<string, unknown>;
 	port: number;
 }
+function readJsonBody(req: IncomingMessage): Promise<unknown> {
+	return new Promise((resolve) => {
+		let raw = '';
+		req.setEncoding('utf8');
+		req.on('data', (chunk: string) => {
+			raw += chunk;
+		});
+		req.on('end', () => {
+			try {
+				resolve(raw.length === 0 ? undefined : JSON.parse(raw));
+			} catch {
+				resolve(undefined);
+			}
+		});
+	});
+}
 
 /**
  * In-process Mixing Station stand-in. Unlike the client test mock, GET on an
@@ -26,7 +42,48 @@ interface MockState {
 function startMock(initial: Record<string, unknown>): Promise<MockState> {
 	return new Promise((resolve) => {
 		const values = new Map(Object.entries(initial));
-		const http = createServer();
+		const http = createServer(async (req, res) => {
+			const url = req.url ?? '';
+			if (url === '/app/state') {
+				res.setHeader('content-type', 'application/json');
+				res.end('{}');
+				return;
+			}
+			const match = /^\/console\/data\/(get|set)\/(.+)\/val$/.exec(url);
+			if (match) {
+				const action = match[1]!;
+				const dataPath = decodeURIComponent(match[2]!);
+				if (action === 'set' && dataPath === 'scene.recall') {
+					const body = await readJsonBody(req);
+					let index: unknown = null;
+					if (body !== null && typeof body === 'object' && 'value' in body && body.value !== null && typeof body.value === 'object' && 'index' in body.value) {
+						index = body.value.index;
+					}
+					values.set('scene.current', index);
+					res.setHeader('content-type', 'application/json');
+					res.end(JSON.stringify({ format: 'val', value: index }));
+					return;
+				}
+				if (!values.has(dataPath)) {
+					res.statusCode = 404;
+					res.end('{"error":"not found"}');
+					return;
+				}
+				if (action === 'get') {
+					res.setHeader('content-type', 'application/json');
+					res.end(JSON.stringify({ format: 'val', value: values.get(dataPath) }));
+					return;
+				}
+				const body = await readJsonBody(req);
+				const value = typeof body === 'object' && body !== null && 'value' in body ? body.value : undefined;
+				values.set(dataPath, value);
+				res.setHeader('content-type', 'application/json');
+				res.end(JSON.stringify({ format: 'val', value }));
+				return;
+			}
+			res.statusCode = 404;
+			res.end('{}');
+		});
 		const wss = new WebSocketServer({ server: http });
 		wss.on('connection', (socket) => {
 			socket.on('message', (data) => {
@@ -51,26 +108,6 @@ function startMock(initial: Record<string, unknown>): Promise<MockState> {
 					reply(null);
 					return;
 				}
-				if (dataPath === 'scene.recall') {
-					let index: unknown = null;
-					if (request.body !== null && typeof request.body === 'object' && 'index' in request.body) {
-						index = request.body.index;
-					}
-					values.set('scene.current', index);
-					reply(request.body);
-					return;
-				}
-				if (request.method === 'GET') {
-					if (values.has(dataPath)) reply(values.get(dataPath), null);
-					else reply(null, 'not found');
-					return;
-				}
-				if (!values.has(dataPath)) {
-					reply(null, 'not found');
-					return;
-				}
-				values.set(dataPath, request.body);
-				reply(request.body);
 			});
 		});
 		http.listen(0, '127.0.0.1', () => {
@@ -85,7 +122,7 @@ async function withClient(
 	run: (state: MockState, client: MixingStationClient) => Promise<void>,
 ): Promise<void> {
 	const state = await startMock(initial);
-	const client = new MixingStationClient({ host: '127.0.0.1', port: state.port, timeoutMs: 300 });
+	const client = new MixingStationClient({ host: '127.0.0.1', port: state.port, timeoutMs: 2000 });
 	t.after(() => {
 		client.close();
 		state.wss.close();

@@ -73,11 +73,6 @@ function normalizeDataPath(dataPath: string): string {
 	return path;
 }
 
-/** Full websocket request path for a data endpoint, e.g. `/console/data/ch.0.mix.lvl`. */
-function dataEndpoint(dataPath: string): string {
-	return `/console/data/${normalizeDataPath(dataPath)}`;
-}
-
 /** Compile a Mixing Station path pattern (`ch.*.mix.lvl`) to a regex over bare data paths. */
 function wildcardToRegex(pattern: string): RegExp {
 	let source = '^';
@@ -92,16 +87,18 @@ function wildcardToRegex(pattern: string): RegExp {
 /**
  * Client for Mixing Station Desktop's REST/websocket API.
  *
- * Wire protocol (https://mixingstation.app/ms-docs/use-cases/apis/):
- *   request:  { "path": "/console/data/ch.0.mix.lvl", "method": "GET"|"POST", "body": <value> }
- *   response: { "path": "/console/data/ch.0.mix.lvl", "method": "GET", "body": <value>, "error": null }
- *   subscribe: POST /console/data/subscribe with body { "path": "ch.*.mix.lvl", "format": "val" }
+ *   GET:  HTTP GET  /console/data/get/<path>/val → { "format": "val", "value": <value> }
+ *   SET:  HTTP POST /console/data/set/<path>/val, body { "value": <value> } → { "format": "val", "value": <value> }
+ *   subscribe: WebSocket POST /console/data/subscribe with body { "path": "ch.*.mix.lvl", "format": "val" }
+ *   paths: WebSocket GET /console/data/paths;  info: WebSocket GET /console/information
  *
- * The protocol has no request ids — responses echo `method` + `path`, so pending
- * requests are correlated by `${method} ${path}` (FIFO per key; concurrent
- * requests to the same path resolve in send order). Subscription updates arrive
- * on `/console/data/<concrete-path>` and are dispatched to every subscribed
- * pattern that matches.
+ * GET/SET go over HTTP REST. The websocket is used for subscriptions — updates
+ * arrive on `/console/data/<concrete-path>` and are dispatched to every
+ * subscribed pattern that matches — and for parameter tree discovery.
+ *
+ * The websocket request protocol has no request ids — responses echo `method` +
+ * `path`, so pending requests are correlated by `${method} ${path}` (FIFO per
+ * key; concurrent requests to the same path resolve in send order).
  *
  * The websocket reconnects automatically with capped exponential backoff after
  * a successful connection drops; active subscriptions are re-established on
@@ -123,6 +120,7 @@ export class MixingStationClient {
 	private lastError: Error | undefined;
 	private closed = false;
 	private hasConnectedOnce = false;
+	private ready = false;
 	private reconnectAttempts = 0;
 	private reconnectTimer: ReturnType<typeof setTimeout> | undefined;
 
@@ -150,21 +148,23 @@ export class MixingStationClient {
 		return this.socket?.readyState === WebSocket.OPEN;
 	}
 
-	/** Open the websocket. Resolves when the connection is established; rejects on failure. */
-	connect(): Promise<void> {
-		return this.openSocket();
+	/** Open the websocket and verify HTTP connectivity. Resolves when both succeed; rejects on failure. */
+	async connect(): Promise<void> {
+		await this.openSocket();
+		await this.verifyHttp();
+		this.ready = true;
 	}
 
-	/** Read a parameter value over the websocket. Resolves with the response `body`. */
+	/** Read a parameter value over HTTP REST. Resolves with the response `value`. */
 	async get(dataPath: string): Promise<unknown> {
-		const response = await this.sendRequest({ method: 'GET', path: dataEndpoint(dataPath) });
-		return response.body;
+		this.requireReady();
+		return this.httpGet(dataPath);
 	}
 
-	/** Write a parameter value over the websocket. Resolves with the response `body`. */
+	/** Write a parameter value over HTTP REST. Resolves with the response `value`. */
 	async set(dataPath: string, value: unknown): Promise<unknown> {
-		const response = await this.sendRequest({ method: 'POST', path: dataEndpoint(dataPath), body: value });
-		return response.body;
+		this.requireReady();
+		return this.httpPost(dataPath, value);
 	}
 
 	/**
@@ -223,23 +223,10 @@ export class MixingStationClient {
 		}
 	}
 
-	/**
-	 * Read a parameter over plain HTTP REST (same `/console/data/<path>` endpoints,
-	 * mirrored by Mixing Station). The HTTP response envelope is not documented by
-	 * Mixing Station, so the parsed JSON body is returned as-is.
-	 */
-	async restGet(dataPath: string): Promise<unknown> {
-		return this.httpRequest('GET', dataPath);
-	}
-
-	/** Write a parameter over plain HTTP REST; see {@link restGet} for envelope caveats. */
-	async restSet(dataPath: string, value: unknown): Promise<unknown> {
-		return this.httpRequest('POST', dataPath, value);
-	}
-
 	/** Stop the client: close the socket, cancel reconnects, reject pending requests. */
 	close(): void {
 		this.closed = true;
+		this.ready = false;
 		if (this.reconnectTimer) {
 			clearTimeout(this.reconnectTimer);
 			this.reconnectTimer = undefined;
@@ -412,17 +399,58 @@ export class MixingStationClient {
 		this.pending.clear();
 	}
 
-	private async httpRequest(method: 'GET' | 'POST', dataPath: string, value?: unknown): Promise<unknown> {
-		const path = dataEndpoint(dataPath);
-		const response = await fetch(`http://${this.host}:${this.port}${path}`, {
-			method,
-			headers: value === undefined ? undefined : { 'content-type': 'application/json' },
-			body: value === undefined ? undefined : JSON.stringify(value),
-			signal: AbortSignal.timeout(this.timeoutMs),
-		});
-		if (!response.ok) {
-			throw new Error(`Mixing Station REST ${method} ${path} failed: HTTP ${response.status}`);
+	private requireReady(): void {
+		if (this.closed || !this.ready) {
+			throw new Error('Mixing Station client is not connected — call connect() first');
 		}
-		return response.json();
+	}
+
+	private async httpGet(dataPath: string): Promise<unknown> {
+		return this.httpValue('GET', dataPath);
+	}
+
+	private async httpPost(dataPath: string, value: unknown): Promise<unknown> {
+		return this.httpValue('POST', dataPath, value);
+	}
+
+	private async httpValue(method: 'GET' | 'POST', dataPath: string, value?: unknown): Promise<unknown> {
+		const action = method === 'GET' ? 'get' : 'set';
+		const url = `http://${this.host}:${this.port}/console/data/${action}/${normalizeDataPath(dataPath)}/val`;
+		let response: Response;
+		try {
+			response = await fetch(url, {
+				method,
+				headers: method === 'POST' ? { 'content-type': 'application/json' } : undefined,
+				body: method === 'POST' ? JSON.stringify({ value }) : undefined,
+				signal: AbortSignal.timeout(this.timeoutMs),
+			});
+		} catch (error) {
+			if (error instanceof Error && error.name === 'TimeoutError') {
+				throw new Error(`Mixing Station REST ${method} ${url} timed out after ${this.timeoutMs}ms`);
+			}
+			const detail = error instanceof Error ? error.message : String(error);
+			throw new Error(`Mixing Station REST ${method} ${url} failed: ${detail}`);
+		}
+		if (!response.ok) {
+			throw new Error(`Mixing Station REST ${method} ${url} failed: HTTP ${response.status}`);
+		}
+		const body: unknown = await response.json();
+		if (typeof body === 'object' && body !== null && 'value' in body) {
+			return body.value;
+		}
+		return body;
+	}
+
+	private async verifyHttp(): Promise<void> {
+		let response: Response;
+		try {
+			response = await fetch(`http://${this.host}:${this.port}/app/state`, { signal: AbortSignal.timeout(this.timeoutMs) });
+		} catch (error) {
+			const detail = error instanceof Error ? error.message : String(error);
+			throw new Error(`Mixing Station HTTP connectivity check failed: ${detail}`);
+		}
+		if (!response.ok) {
+			throw new Error(`Mixing Station HTTP connectivity check failed: HTTP ${response.status}`);
+		}
 	}
 }
