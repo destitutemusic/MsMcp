@@ -67,8 +67,8 @@ node dist/src/main.js --host 127.0.0.1 --port 1234
 ```
 
 `npm test` builds and runs the suite. Two mock servers under `mock/` let you develop without a
-console: `node mock/mock-mixing-station.js` (REST) and `node mock/mock-mixing-station-ws.js`
-(WebSocket).
+console: `node mock/mock-mixing-station.cjs` (REST, port 8081) and
+`node mock/mock-mixing-station-ws.cjs` (WebSocket).
 
 ## Licence and attribution
 
