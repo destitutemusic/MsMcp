@@ -1,7 +1,7 @@
 {
   "name": "msmcp",
   "version": "0.1.0",
-  "description": "MCP server for Mixing Station - dynamic parameter discovery and control",
+  "description": "MCP server for Mixing Station: lets an AI client control a digital mixing console through Mixing Station's REST and WebSocket API",
   "license": "Apache-2.0",
   "type": "module",
   "bin": {
@@ -9,8 +9,11 @@
   },
   "files": [
     "dist/src/",
+    "profiles/",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "NOTICE",
+    "THIRD-PARTY.md"
   ],
   "repository": {
     "type": "git",
@@ -41,5 +44,9 @@
     "@types/node": "^26.4.0",
     "@types/ws": "^8.18.1",
     "typescript": "^7.0.2"
+  },
+  "homepage": "https://github.com/destitutemusic/MsMcp#readme",
+  "bugs": {
+    "url": "https://github.com/destitutemusic/MsMcp/issues"
   }
 }

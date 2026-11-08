@@ -1,93 +1,81 @@
 # MsMcp
 
-MCP server for Mixing Station — dynamic parameter discovery and real-time control of 60+ digital mixers supported by Mixing Station Desktop.
+An **MCP server for Mixing Station**. It lets an AI client — Claude Desktop, Codex, ChatGPT, or any
+other MCP-capable app — control a digital mixing console through Mixing Station Desktop's REST and
+WebSocket API: it discovers every available parameter at startup, exposes them as MCP tools, and
+applies your changes live.
 
-## What it does
+## What you need
 
-MsMcp connects to Mixing Station Desktop via its REST/Websocket API, discovers all available mixer parameters at startup, and auto-generates MCP tools for each one. Use any MCP-compatible client (Claude Desktop, Cursor, etc.) to control your mixer with natural language.
-
-## Requirements
-
-- Node.js >= 20
-- Mixing Station Desktop running and connected to a mixer
-- MCP-capable client (Claude Desktop, Cursor, etc.)
+- **An MCP-capable client.** That is where the AI lives.
+- **This package does NOT include an AI model.** MsMcp is the hands, not the brain: it has no
+  language model, no API keys and makes no outbound calls anywhere except to your own Mixing
+  Station instance on your machine. *(The sibling MixingStationCopilot project is the one that
+  bundles a copilot; this is the small, shareable half.)*
+- **Mixing Station Desktop**, running, connected to your mixer, with its HTTP REST API enabled.
+  The server assumes `127.0.0.1:1234` by default; pass `--host` / `--port` if yours listens
+  elsewhere. Nothing works until this is on — it is the first thing people hit.
 
 ## Install
 
-npm install -g msmcp
+```bash
+npx msmcp
+```
 
-Or run from source:
+That is the whole install: the package has a `bin` entry `msmcp` → `dist/src/main.js`, so `npx`
+downloads and runs it. To install it permanently, `npm install -g msmcp` and use `msmcp`.
 
-git clone https://github.com/destitutemusic/MsMcp.git
-cd MsMcp/msmcp
-npm install
-npm run build
+Requires **Node.js ≥ 20**.
 
-## Usage
+## Configure your client
 
-Start the server (Mixing Station Desktop must be running first):
-
-msmcp --host 127.0.0.1 --port 1234
-
-Default host is 127.0.0.1, default port is 1234.
-
-### Configure your MCP client
-
-Add to your MCP client config (e.g. Claude Desktop claude_desktop_config.json):
+Claude Desktop — edit `claude_desktop_config.json` (macOS:
+`~/Library/Application Support/Claude/claude_desktop_config.json`, Windows:
+`%APPDATA%\Claude\claude_desktop_config.json`):
 
 ```json
 {
   "mcpServers": {
-    "mixer": {
-      "command": "msmcp",
-      "args": ["--host", "127.0.0.1", "--port", "1234"]
+    "msmcp": {
+      "command": "npx",
+      "args": ["-y", "msmcp", "--host", "127.0.0.1", "--port", "1234"]
     }
   }
 }
 ```
 
-### Available tools
+Restart the client. For any other MCP client, register the same command — `npx -y msmcp` — as a
+**stdio** server; the client-specific field names differ but the command does not. If you installed
+globally, `"command": "msmcp"` with no `npx` args is the same thing.
 
-MsMcp auto-generates tools for every parameter discovered on your mixer. Common tools include:
+## Discovering what it can do
 
-- mixer.ch.N.mix.lvl.get / .set — channel fader (dB)
-- mixer.ch.N.mix.mute.get / .set — channel mute
-- mixer.ch.N.mix.pan.get / .set — channel pan
-- mixer.bus.N.mix.lvl.get / .set — bus fader
-- mixer.dca.N.mix.lvl.get / .set — DCA fader
+You do not need a tool list from this README, and it would be wrong if we wrote one: the tools are
+generated from **your** mixer, so they differ per console. Ask the client to call `tools/list` — or
+just ask it in words — and it will enumerate the live set. The protocol version is negotiated at
+handshake and the server identifies itself as `MsMcp` (version `0.1.0`); both are visible in the
+`initialize` response.
 
-Fixed tools:
-- mixer.list_parameters — list all discovered parameters
-- mixer.get / mixer.set — read/write any parameter by path
-- mixer.batch — batch multiple set operations
-- mixer.scene.list — list saved scenes
-- mixer.scene.get_current — get current scene
-- mixer.scene.recall — recall a scene by index
+## From source
 
-### Example: control a channel fader
+```bash
+git clone https://github.com/destitutemusic/MsMcp.git
+cd MsMcp
+npm ci
+npm run build
+node dist/src/main.js --host 127.0.0.1 --port 1234
+```
 
-Ask your MCP client: "Set channel 1 fader to -10 dB"
+`npm test` builds and runs the suite. Two mock servers under `mock/` let you develop without a
+console: `node mock/mock-mixing-station.js` (REST) and `node mock/mock-mixing-station-ws.js`
+(WebSocket).
 
-The client calls mixer.ch.0.mix.lvl.set with value: -10.
+## Licence and attribution
 
-## Troubleshooting
+Apache-2.0 — see `LICENSE`. This package vendors modules from **ConsoleMCP**, Copyright 2026
+Code Pro Quo Ltd trading as Sonus Immersivus, under Apache-2.0; the required attribution is in
+[`NOTICE`](NOTICE), and complete component and dependency licences are in
+[`THIRD-PARTY.md`](THIRD-PARTY.md).
 
-### "no parameters discovered"
-Mixing Station Desktop is not running, or not connected to a mixer. Start Mixing Station Desktop and connect to your mixer before starting MsMcp.
-
-### "Mixing Station client is not connected"
-The WebSocket connection to Mixing Station dropped. MsMcp auto-reconnects; retry your request after a few seconds.
-
-### Wrong port
-Mixing Station Desktop's API port may differ. Open Mixing Station Desktop, go to Settings > API, and check the port number. Pass it with --port.
-
-### Connection refused
-Ensure Mixing Station Desktop is running on the same machine, or that firewall rules allow connections on the API port.
-
-## Supported mixers
-
-MsMcp works with any mixer supported by Mixing Station Desktop (60+ models including Behringer X AIR/X32/WING, Allen & Heath Qu/dLive, Midas M32, and many more).
-
-## License
-
-Apache-2.0. Mixing Station is a separate product by David Giga (@davidgiga1993).
+**Not affiliated with or endorsed by Mixing Station, Code Pro Quo Ltd, or Sonus Immersivus.**
+"Mixing Station" is used only to describe the software this server talks to.

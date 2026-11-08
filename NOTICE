@@ -1,0 +1,56 @@
+MsMcp
+Copyright 2026 Donncha Walsh
+
+Licensed under the Apache License, Version 2.0. You may obtain a copy of the
+License in the LICENSE file distributed with this work, or at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+---
+
+This product includes software developed by Code Pro Quo Ltd
+(https://sonusimmersivus.com).
+
+Portions of this software are derived from ConsoleMCP
+(https://github.com/bulyaki/ConsoleMCP), which carries the following notice:
+
+    ConsoleMCP
+    Copyright 2026 Code Pro Quo Ltd
+
+    Sonus Immersivus © 2026. Sonus Immersivus is a trading name of Code Pro Quo
+    Ltd, registered in England and Wales, company registration number: 14871521.
+
+    This product includes software developed by Code Pro Quo Ltd
+    (https://sonusimmersivus.com).
+
+    Licensed under the Apache License, Version 2.0. You may obtain a copy of the
+    License in the LICENSE file distributed with this work, or at:
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    If you redistribute this software, in source or object form, you must include
+    the text of this NOTICE file with your distribution — for example in a
+    third-party licences screen, an about box, or a NOTICES/CREDITS document
+    shipped alongside your product.
+
+---
+
+Changes from ConsoleMCP
+
+This work modifies and extends ConsoleMCP. The following files in `src/` are
+redistributed from ConsoleMCP's TypeScript implementation and were reworked for
+Mixing Station's unified API:
+
+    osc.ts, gateway.ts, mapping.ts, server.ts   derived from ConsoleMCP
+    main.ts                                     modified
+    discovery.ts, mixingstation.ts,
+    msmcp-gateway.ts, msmcp-server.ts           new in this work
+
+See THIRD-PARTY.md for the licences of bundled third-party components.
+
+---
+
+If you redistribute this software, in source or object form, you must include
+the text of this NOTICE file with your distribution — for example in a
+third-party licences screen, an about box, or a NOTICES/CREDITS document
+shipped alongside your product.
