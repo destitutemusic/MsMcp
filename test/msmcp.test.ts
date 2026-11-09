@@ -116,13 +116,22 @@ function startMock(initial: Record<string, unknown>): Promise<MockState> {
 	});
 }
 
+/**
+ * Build the mock and a client for one test body.
+ *
+ * The request deadline is 15 s rather than 2 s for a load reason, not a product one: discovery
+ * probes many paths concurrently, and when the whole suite runs together the event loop is busy
+ * for tens of seconds, so a 2 s per-request deadline expired and a legitimate path dropped out of
+ * the result. That produced failures that moved between tests from run to run and taught
+ * contributors to ignore red. Behaviour tested here is unchanged; only the ceiling moved.
+ */
 async function withClient(
 	t: { after: (fn: () => void | Promise<void>) => void },
 	initial: Record<string, unknown>,
 	run: (state: MockState, client: MixingStationClient) => Promise<void>,
 ): Promise<void> {
 	const state = await startMock(initial);
-	const client = new MixingStationClient({ host: '127.0.0.1', port: state.port, timeoutMs: 2000 });
+	const client = new MixingStationClient({ host: '127.0.0.1', port: state.port, timeoutMs: 15_000 });
 	t.after(() => {
 		client.close();
 		state.wss.close();
