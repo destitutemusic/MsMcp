@@ -69,9 +69,10 @@ function generateMockParams() {
 }
 
 // Create WebSocket server
-const wss = new WebSocket.Server({ port: 1234 });
+// 8080: the same port the server defaults to, so `node mock/...` then `npm start` works.
+const wss = new WebSocket.Server({ port: 8080 });
 
-console.log('Mock Mixing Station WebSocket API starting on port 1234...');
+console.log('Mock Mixing Station WebSocket API starting on port 8080...');
 
 wss.on('connection', (ws) => {
     console.log('Client connected');
@@ -184,5 +185,5 @@ wss.on('connection', (ws) => {
 // Initialize mock parameters
 generateMockParams();
 
-console.log(`Mock Mixing Station WebSocket API running on ws://localhost:1234`);
+console.log(`Mock Mixing Station WebSocket API running on ws://localhost:8080`);
 console.log(`Parameters: ${Object.keys(MOCK_PARAMS).length}`);

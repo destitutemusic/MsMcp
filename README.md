@@ -13,7 +13,7 @@ applies your changes live.
   Station instance on your machine. *(The sibling MixingStationCopilot project is the one that
   bundles a copilot; this is the small, shareable half.)*
 - **Mixing Station Desktop**, running, connected to your mixer, with its HTTP REST API enabled.
-  The server assumes `127.0.0.1:1234` by default; pass `--host` / `--port` if yours listens
+  The server assumes `127.0.0.1:8080` by default; pass `--host` / `--port` if yours listens
   elsewhere. Nothing works until this is on — it is the first thing people hit.
 
 ## Install
@@ -38,7 +38,7 @@ Claude Desktop — edit `claude_desktop_config.json` (macOS:
   "mcpServers": {
     "msmcp": {
       "command": "npx",
-      "args": ["-y", "msmcp", "--host", "127.0.0.1", "--port", "1234"]
+      "args": ["-y", "msmcp", "--host", "127.0.0.1", "--port", "8080"]
     }
   }
 }
@@ -63,7 +63,7 @@ git clone https://github.com/destitutemusic/MsMcp.git
 cd MsMcp
 npm ci
 npm run build
-node dist/src/main.js --host 127.0.0.1 --port 1234
+node dist/src/main.js --host 127.0.0.1 --port 8080
 ```
 
 `npm test` builds and runs the suite. Two mock servers under `mock/` let you develop without a

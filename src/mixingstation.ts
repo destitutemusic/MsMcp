@@ -1,7 +1,7 @@
 import WebSocket from 'ws';
 
 export const DEFAULT_HOST = '127.0.0.1';
-export const DEFAULT_PORT = 1234;
+export const DEFAULT_PORT = 8080;
 export const DEFAULT_TIMEOUT_MS = 5_000;
 export const DEFAULT_RECONNECT_DELAY_MS = 1_000;
 export const DEFAULT_MAX_RECONNECT_DELAY_MS = 10_000;
@@ -39,7 +39,7 @@ export type SubscriptionHandler = MixingStationSubscription['handler'];
 export interface MixingStationClientOptions {
 	/** Mixing Station Desktop host; default 127.0.0.1. */
 	host?: string;
-	/** REST/websocket port; default 1234. */
+	/** REST/websocket port; default 8080 (Mixing Station's documented REST API port). */
 	port?: number;
 	/** Timeout for a request or subscription handshake; default 5000ms. */
 	timeoutMs?: number;

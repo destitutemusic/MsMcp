@@ -3,7 +3,7 @@ import { createServer, type IncomingMessage, type Server as HttpServer } from 'n
 import test from 'node:test';
 import { WebSocket, WebSocketServer } from 'ws';
 
-import { MixingStationClient } from '../src/mixingstation.js';
+import { DEFAULT_HOST, DEFAULT_PORT, MixingStationClient } from '../src/mixingstation.js';
 
 interface MockState {
 	http: HttpServer;
@@ -109,15 +109,42 @@ function push(state: MockState, path: string, value: unknown): void {
 	}
 }
 
-async function waitFor(predicate: () => boolean, timeoutMs = 2000): Promise<void> {
-	const deadline = Date.now() + timeoutMs;
+/**
+ * Poll `predicate` every 10 ms until it holds or the deadline passes.
+ *
+ * The deadline is deliberately generous. It used to be 2 s (and 3 s at one call site), which is
+ * fine on an idle machine and not fine under load: the discovery tests in this suite each take
+ * 21-70 s, so by the time the reconnect test runs the event loop is busy and a legitimate
+ * reconnect-and-resubscribe (which has an intentional 30-60 ms backoff) can miss a 3 s window.
+ * A test that fails only in a full suite teaches contributors to ignore red.
+ *
+ * Fast polling stays; only the ceiling moved. Fifteen seconds is ~50x the observed reconnect
+ * latency, so the test cannot flake on scheduling delay, and a genuine hang still fails fast
+ * enough to be a useful signal.
+ */
+const WAIT_FOR_DEADLINE_MS = 15_000;
+
+async function waitFor(predicate: () => boolean, timeoutMs = WAIT_FOR_DEADLINE_MS): Promise<void> {
+	const started = Date.now();
+	const deadline = started + timeoutMs;
 	while (!predicate()) {
-		if (Date.now() > deadline) throw new Error('waitFor timed out');
+		if (Date.now() > deadline) {
+			throw new Error(`waitFor timed out after ${Date.now() - started} ms (deadline ${timeoutMs} ms)`);
+		}
 		await new Promise((r) => setTimeout(r, 10));
 	}
 }
 
-async function withMock(t: { after: (fn: () => void | Promise<void>) => void }, run: (state: MockState, client: MixingStationClient) => Promise<void>, timeoutMs = 2000): Promise<void> {
+/**
+ * Build the in-process mock and a client, and run one test body against them.
+ *
+ * `timeoutMs` is the CLIENT's request deadline, and it defaults generous for the same reason
+ * `waitFor` does: under load this suite's own discovery tests hold the event loop for 21-70 s, so
+ * a 2 s request deadline expired on tests that had done nothing wrong. The one test that is
+ * *about* a timeout -- 'unanswered requests time out' -- passes 100 ms explicitly, so the
+ * behaviour it pins is unchanged.
+ */
+async function withMock(t: { after: (fn: () => void | Promise<void>) => void }, run: (state: MockState, client: MixingStationClient) => Promise<void>, timeoutMs = 15_000): Promise<void> {
 	const state = await startMock();
 	const client = new MixingStationClient({ host: '127.0.0.1', port: state.port, timeoutMs, reconnectDelayMs: 30, maxReconnectDelayMs: 60 });
 	t.after(() => {
@@ -128,6 +155,13 @@ async function withMock(t: { after: (fn: () => void | Promise<void>) => void }, 
 	});
 	await run(state, client);
 }
+
+test('the default port is Mixing Station\'s documented REST port, 8080', () => {
+	// Pinned against RESEARCH.md's own CLI spec ("--port PORT ... default: 8080") and the sibling
+	// app's config, so the first-run experience cannot drift back to a port nothing listens on.
+	assert.equal(DEFAULT_PORT, 8080);
+	assert.equal(DEFAULT_HOST, '127.0.0.1');
+});
 
 test('get reads a value over HTTP REST', async (t) => {
 	await withMock(t, async (state, client) => {
@@ -201,6 +235,6 @@ test('reconnects and resubscribes after a disconnect', async (t) => {
 		for (const socket of state.connections) socket.terminate();
 		await waitFor(() => state.connections.length >= 2 && client.connected);
 		push(state, 'ch.3.mix.lvl', -3);
-		await waitFor(() => received.some((value) => value === -3), 3000);
+		await waitFor(() => received.some((value) => value === -3));
 	});
 });
